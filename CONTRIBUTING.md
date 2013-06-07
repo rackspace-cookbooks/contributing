@@ -8,7 +8,7 @@ CONTRIBUTING
 * All Cookbooks must be Apache 2.0 licensed. 
 * Include a `LICENSE` file in the top level directory of the cookbook with the Apache 2.0 Official license
 * Include a `License and Authors` section of the `README.md` file with the following:
-```Licensed under the Apache License, Version 2.0 (the "License");
+* ```Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
@@ -19,6 +19,14 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.```
+
+## README.md / Documentation
+* Please include a README.md file in the cookbook root directory.
+* Please include Descriptions, Platform support, notes, nots on recipes, attributes, etc
+
+## CHANGELOG.md
+* Please include a `CHANGELOG.md` in the cookbook root directory
+* Please include brief notes about your changes and your name in each pull request
 
 # Testing specifications
 
