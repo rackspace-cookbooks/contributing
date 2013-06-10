@@ -39,7 +39,7 @@ limitations under the License.```
 * test-kitchen 1.0 support is required for all cookbooks. Please see [test-kitchen](https://github.com/opscode/test-kitchen) for more details.
 
 ### test-kitchen structure
-* All test should be included in a `tests` subdirectory within the cookbook root directory.
+* Tests should be handled as a sub cookbook under /test/cookbooks/$name_test similar to how the opscode chef-client cookbook is layed out. The tests should be called and have any needed attributes set in a .kitchen.yml file with seperate suites as appropiate. We will append our own .kitchen.local.yml that provides kitchen-openstack support for our own testing.
 
 ## foodcritic
 * TODO: Add notes regarding foodcritic
