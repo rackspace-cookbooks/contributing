@@ -8,6 +8,7 @@ CONTRIBUTING
 * All Cookbooks must be Apache 2.0 licensed. 
 * Include a `LICENSE` file in the top level directory of the cookbook with the Apache 2.0 Official license
 * Include a `License and Authors` section of the `README.md`. See example at [chef-client](https://github.com/rackspace-cookbooks/chef-client)
+* If you've forked the cookbook from another repo, please add notes attributing the original work to that repo
 
 ## README.md / Documentation
 * Please include a README.md file in the cookbook root directory.
