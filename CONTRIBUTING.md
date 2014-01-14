@@ -3,8 +3,8 @@ CONTRIBUTING
 
 # General
 * The following document will serve as a guide on what and how to contribute to any cookbook within [rackspace-cookbooks](http://github.com/rackspace-cookbooks/).
-* The cookbookname, attribute namespace and git repo should all have the same name
- * i.e. `rackspace_yum`, `rackspace-apache`
+* The cookbook name, attribute namespace and git repo should all be the same
+ * i.e. `rackspace_yum`, `rackspace_apache`
 * Attempt to follow the style guide from [github](https://github.com/styleguide/ruby)
 
 #Chef
