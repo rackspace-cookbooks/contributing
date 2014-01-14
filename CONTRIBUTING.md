@@ -11,6 +11,8 @@ CONTRIBUTING
  * Operating systems outside `ubuntu`,`debian`,`rhel`,`centos`
 * We will default to Rackspace provided systems
  * i.e. for ntp, we will default to rackspace ntp servers and fall back to community ones  
+* Berkshelf should update to point to github locations for any cookbook dependency
+ * i.e cookbook "apt", github: "rackspace-cookbooks/apt"
 
 #Chef
 
@@ -50,6 +52,11 @@ end
    default[:rackspace_sudo][:templates_cookbook] = "rackspace-sudo"
 ```
 
+## metadata.rb
+* All dependencies should be listed with the pessimistic operation ("~> ") to the minor version
+ * i.e. depends "apt", "~> 1.2" 
+ 
+
 #Misc
 
 ## GIT Tags
@@ -87,7 +94,7 @@ end
 
 ### test-kitchen structure
 * Tests should be handled as a sub cookbook under /test/cookbooks/$name_test similar to how the opscode [chef-client](https://github.com/rackspace-cookbooks/chef-client) cookbook is layed out. 
-* The tests should be called and have any needed attributes set in a .kitchen.yml file with seperate suites as appropiate. We will append our own .kitchen.local.yml via branch `testint` that provides kitchen-openstack support for our testing against openstack.
+* The tests should be called and have any needed attributes set in a .kitchen.yml file with seperate suites as appropiate. We will append our own .kitchen.local.yml via branch `testing` that provides kitchen-openstack support for our testing against openstack.
 
 ## foodcritic
 * TODO: Add notes regarding foodcritic
