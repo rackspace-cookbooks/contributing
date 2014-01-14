@@ -4,7 +4,10 @@ CONTRIBUTING
 # General
 * The following document will serve as a guide on what and how to contribute to any cookbook within [rackspace-cookbooks](http://github.com/rackspace-cookbooks/).
 * The cookbookname, attribute namespace and git repo should all have the same name
- * i.e. rackspace_yum 
+ * i.e. `rackspace_yum`, `rackspace-apache`
+* Attempt to follow the style guide from [github](https://github.com/styleguide/ruby)
+
+#Chef
 
 ## Attributes
 * All attributes should by ruby symbols instead of strings
@@ -13,7 +16,33 @@ CONTRIBUTING
  * i.e. `default[:rackspace_user]`
 * All Attributes that will be written a configuration file must fall under a [:config] hash
  * i.e. `default[:rackspace_apache][:config]`
+* Attributes should default to the same ones as installed by the package or sane modifications.
 
+## Recipes
+
+
+##Templates
+* Template provider calls should always include the `cookbook` attribute as to allow for easily overriding from a wrapper cookbooks. The default should always be the cookbook itself.
+ * i.e. in recipe
+
+
+```ruby   
+   template "/etc/sudoers" do
+   cookbook node[:rackspace_sudo][:templates_cookbook]
+   source "sudoers.erb"
+   mode 0440
+   owner "root"
+   group "root"
+   end
+```
+
+* i.e. in attributes
+
+```ruby
+   default[:rackspace_sudo][:templates_cookbook] = "rackspace-sudo"
+```
+
+#Misc
 
 ## Licensing
 * All Cookbooks must be Apache 2.0 licensed. 
