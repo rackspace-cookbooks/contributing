@@ -15,7 +15,6 @@ CONTRIBUTING
  * i.e cookbook "apt", github: "rackspace-cookbooks/apt"
 
 #Chef
-
 ## Attributes
 * All attributes should by ruby symbols instead of strings
  * i.e. `default[:rackspace_apache]` instead of `default['apache']`
@@ -58,7 +57,6 @@ end
  
 
 #Misc
-
 ## GIT Tags
 * Version increases should have an accompying git tag. Jenkins will be responsbile for ensuring this is complete.
 
@@ -77,30 +75,54 @@ end
 * Please include a `CHANGELOG.md` in the cookbook root directory
 * Please include brief notes about your changes and your name in each pull request
 
-# Testing specifications
 
+# Testing specifications
 ## CI
-* All Cookbooks must be integrated with with a CI server.
-    * Jenkins and TravisCI are two popular choices
 * Added features should include additional tests. Pull requests without tests may be denied.
 
 ## test-kitchen support
-* test-kitchen 1.0 support is required for all cookbooks. Please see [test-kitchen](https://github.com/opscode/test-kitchen) for more details.
-* test-kitchen should include platforms for
- * Ubuntu 12.04
- * Debian 7.2
- * RHEL 6
- * CentOS 6
+* test-kitchen 1.x support is required for all cookbooks. Please see [test-kitchen](https://github.com/opscode/test-kitchen) for more details.
+* test-kitchen should include platforms section:
+ 
+
+```ruby
+---
+driver_plugin: vagrant
+driver_config:
+  require_chef_omnibus: true
+
+platforms:
+- name: ubuntu-12.04
+  driver_config:
+    box: opscode-ubuntu-12.04
+    box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-12.04_chef-provisionerless.box
+- name: debian-7.2
+  driver_config:
+    box: opscode-debian-7.2
+    box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_debian-7.2.0_chef-provisionerless.box
+- name: centos-6.4
+  driver_config:
+    box: opscode-centos-6.4
+    box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-6.4_chef-provisionerless.box
+```
 
 ### test-kitchen structure
-* Tests should be handled as a sub cookbook under /test/cookbooks/$name_test similar to how the opscode [chef-client](https://github.com/rackspace-cookbooks/chef-client) cookbook is layed out. 
-* The tests should be called and have any needed attributes set in a .kitchen.yml file with seperate suites as appropiate. We will append our own .kitchen.local.yml via branch `testing` that provides kitchen-openstack support for our testing against openstack.
+* Tests should be called and have any needed attributes set in a .kitchen.yml file with seperate suites as appropiate. We will append our own .kitchen.local.yml via branch `testing` that provides kitchen-openstack support for our testing against openstack.
 
 ## foodcritic
 * TODO: Add notes regarding foodcritic
 * 
 
-## chefspec/serverspec/minitest
+## chefspec/minitest
+* All Chefspec unit tests should be located in `test/spec`
+* Tests should be handled as a sub cookbook under `/test/cookbooks/$cookbookname_test` similar to how the opscode [chef-client](https://github.com/rackspace-cookbooks/chef-client) cookbook is layed out.
+
+### Unit tests (chefspec)
+
+### Functional tests (test-kitchen)
+
+## Vagrantfile 
+* Not required but nice to have :)
 
 # Code Review
 * All code additions and pull requests are subject to the following:
