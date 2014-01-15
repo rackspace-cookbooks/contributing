@@ -98,15 +98,19 @@ platforms:
 - name: ubuntu-12.04
   driver_config:
     box: opscode-ubuntu-12.04
-    box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-12.04_chef-provisionerless.box
-- name: debian-7.2
-  driver_config:
-    box: opscode-debian-7.2
-    box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_debian-7.2.0_chef-provisionerless.box
+    box_url: https://opscode-vm.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_provisionerless.box
+  run_list:
+  - recipe[apt]
 - name: centos-6.4
   driver_config:
     box: opscode-centos-6.4
-    box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-6.4_chef-provisionerless.box
+    box_url: https://opscode-vm.s3.amazonaws.com/vagrant/opscode_centos-6.4_provisionerless.box
+- name: debian-7.2.0
+  driver_config:
+    box: opscode-debian-7.2.0
+    box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_debian-7.2.0_chef-provisionerless.box
+  run_list:
+  - recipe[apt]
 ```
 
 ### test-kitchen structure
