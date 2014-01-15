@@ -12,7 +12,7 @@ CONTRIBUTING
 * We will default to Rackspace provided systems
  * i.e. for ntp, we will default to rackspace ntp servers and fall back to community ones  
 * Berkshelf should update to point to github locations for any cookbook dependency
- * i.e cookbook "apt", github: "rackspace-cookbooks/apt"
+ * i.e `cookbook "apt", github: "rackspace-cookbooks/apt"`
 
 #Chef
 ## Attributes
@@ -24,7 +24,7 @@ CONTRIBUTING
  * i.e. `default[:rackspace_apache][:config]`
 * Attributes should default to the same ones as installed by the package or sane modifications.
 * "data dirs" should be configurable for any service
- * i.e. for mysql `node[rackspace_mysql][data_di] = "/var/lib/mysql"` 
+ * i.e. for mysql `node[rackspace_mysql][data_dir] = "/var/lib/mysql"` 
 
 ## Recipes
 * monitors.rb - Standard rackspace cloud checks for this cookbook. These should not automaticlaly by included by the cookbook and should only be available to be included. 
@@ -77,8 +77,11 @@ end
 
 
 # Testing specifications
-## CI
 * Added features should include additional tests. Pull requests without tests may be denied.
+* Workflow: `Jenkins -> Thor -> Strainer -> knife -> foodcritic -> chefspec -> kitchen -> Thor -> Jenkins`
+
+## CI
+* CI will be performed via jenkins at jenkins.rackops.org on any pull requests.
 
 ## test-kitchen support
 * test-kitchen 1.x support is required for all cookbooks. Please see [test-kitchen](https://github.com/opscode/test-kitchen) for more details.
@@ -111,15 +114,14 @@ platforms:
 
 ## foodcritic
 * TODO: Add notes regarding foodcritic
-* 
 
-## chefspec/minitest
-* All Chefspec unit tests should be located in `test/spec`
-* Tests should be handled as a sub cookbook under `/test/cookbooks/$cookbookname_test` similar to how the opscode [chef-client](https://github.com/rackspace-cookbooks/chef-client) cookbook is layed out.
-
-### Unit tests (chefspec)
+### Chefspec
+* All Chefspec tests should be located in `test/spec`
+* All in memory testing. Isolated, indepented, atomic.
+* LWRPs and libraries need additional unit tests 
 
 ### Functional tests (test-kitchen)
+* Tests should be handled as a directory under `/test/integration/$suitename`. This is defined [here](http://kitchen.ci/docs/getting-started/writing-test) whereby the $suitename matches the suite defined in .kitchen.yml
 
 ## Vagrantfile 
 * Not required but nice to have :)
