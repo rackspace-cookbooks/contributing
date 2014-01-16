@@ -37,7 +37,7 @@ CONTRIBUTING
 
 ```ruby   
 template "/etc/sudoers" do
-  cookbook node[:rackspace_sudo][:templates_cookbook]
+  cookbook node[:rackspace_sudo][:templates_cookbook][:sudoers]
   source "sudoers.erb"
   mode 0440
   owner "root"
@@ -48,7 +48,7 @@ end
 * i.e. in attributes
 
 ```ruby
-   default[:rackspace_sudo][:templates_cookbook] = "rackspace-sudo"
+   default[:rackspace_sudo][:templates_cookbook][:sudoers] = "rackspace_sudo"
 ```
 
 ## metadata.rb
@@ -120,7 +120,7 @@ platforms:
 * TODO: Add notes regarding foodcritic
 
 ### Chefspec
-* All Chefspec tests should be located in `test/spec`
+* All Chefspec tests should be located in `spec` within the parent cookbook
 * All in memory testing. Isolated, indepented, atomic.
 * LWRPs and libraries need additional unit tests 
 
