@@ -24,7 +24,7 @@ CONTRIBUTING
  * i.e. `default[:rackspace_apache][:config]`
 * Attributes should default to the same ones as installed by the package or sane modifications.
 * "data dirs" should be configurable for any service
- * i.e. for mysql `node[rackspace_mysql][data_dir] = "/var/lib/mysql"` 
+ * i.e. for mysql `default[:rackspace_mysql][:data_dir] = "/var/lib/mysql"` 
 
 ## Recipes
 * monitors.rb - Standard rackspace cloud checks for this cookbook. These should not automaticlaly by included by the cookbook and should only be available to be included. 
