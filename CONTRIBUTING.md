@@ -117,8 +117,8 @@ platforms:
 * Tests should be called and have any needed attributes set in a .kitchen.yml file with seperate suites as appropiate. We will append our own .kitchen.local.yml via branch `testing` that provides kitchen-openstack support for our testing against openstack.
 
 ## Strainer
-* standard Gemfile is [here](https://gist.github.com/doublerr/8480261)
-* standard Strainer file is [here](https://gist.github.com/doublerr/8480249)
+* standard Gemfile is [here](https://github.com/rackspace-cookbooks/contributing/blob/master/Gemfile)
+* standard Strainer file is [here](https://github.com/rackspace-cookbooks/contributing/blob/master/Strainer)
 
 ### Chefspec
 * All Chefspec tests should be located in `spec` within the parent cookbook
