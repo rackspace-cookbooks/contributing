@@ -118,7 +118,7 @@ platforms:
 
 ## Strainer
 * standard Gemfile is [here](https://github.com/rackspace-cookbooks/contributing/blob/master/Gemfile)
-* standard Strainer file is [here](https://github.com/rackspace-cookbooks/contributing/blob/master/Strainer)
+* standard Strainerfile is [here](https://github.com/rackspace-cookbooks/contributing/blob/master/Strainerfile)
 
 ### Chefspec
 * All Chefspec tests should be located in `spec` within the parent cookbook
