@@ -92,7 +92,7 @@ end
 ---
 driver_plugin: vagrant
 driver_config:
-  require_chef_omnibus: true
+  require_chef_omnibus: latest
 
 platforms:
 - name: ubuntu-12.04
