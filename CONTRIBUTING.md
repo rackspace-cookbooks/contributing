@@ -120,6 +120,9 @@ platforms:
 * standard Gemfile is [here](https://github.com/rackspace-cookbooks/contributing/blob/master/Gemfile)
 * standard Strainerfile is [here](https://github.com/rackspace-cookbooks/contributing/blob/master/Strainerfile)
 
+## Thor
+* Standard Thorfile is [here](https://github.com/rackspace-cookbooks/contributing/blob/master/Thorfile)
+
 ### Chefspec
 * All Chefspec tests should be located in `spec` within the parent cookbook
 * All in memory testing. Isolated, indepented, atomic.
