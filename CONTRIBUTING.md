@@ -116,8 +116,9 @@ platforms:
 ### test-kitchen structure
 * Tests should be called and have any needed attributes set in a .kitchen.yml file with seperate suites as appropiate. We will append our own .kitchen.local.yml via branch `testing` that provides kitchen-openstack support for our testing against openstack.
 
-## foodcritic
-* TODO: Add notes regarding foodcritic
+## Strainer
+* standard Strainer file is [here](https://gist.github.com/doublerr/8480261)
+* standard Gemfile is [here](https://gist.github.com/doublerr/8480249)
 
 ### Chefspec
 * All Chefspec tests should be located in `spec` within the parent cookbook
