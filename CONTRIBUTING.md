@@ -125,6 +125,7 @@ platforms:
 
 ## Rubocop
 * standard .rubocop.yml is [here](https://github.com/rackspace-cookbooks/contributing/blob/master/.rubocop.yml)
+* Disabling cops in code is allowed where the style recommendation results in code which is more difficult to read, is messier than the original, or is otherwise arguable as an anti-pattern.  Disabled cops must have comments documenting why they are disabled and disable target code blocks, not a whole file.  See [the Rubocop docs](https://github.com/bbatsov/rubocop#disabling-cops-within-source-code) for details on in-code disables.
 
 ### Chefspec
 * All Chefspec tests should be located in `spec` within the parent cookbook
