@@ -16,19 +16,19 @@ CONTRIBUTING
 
 #Chef
 ## Attributes
-* All attributes should by ruby symbols instead of strings
- * i.e. `default[:rackspace_apache]` instead of `default['apache']`
+* All Attribute hashes should be indexed with strings instead of symbols or using 'dot notation'
+ * i.e. `node['rackspace_apt']['config']`, not `node[:rackspace_apt][:config]` and not `node.rackspace_apt.config`
 * All Attributes namespace should match the cookbook name
- * i.e. `default[:rackspace_user]`
-* All Attributes that will be written a configuration file must fall under a [:config] hash
- * i.e. `default[:rackspace_apache][:config]`
+ * i.e. `default['rackspace_user']`
+* All Attributes that will be written a configuration file must fall under a ['config'] hash
+ * i.e. `default['rackspace_apache']['config']`
 * Attributes should default to the same ones as installed by the package or sane modifications.
 * "data dirs" should be configurable for any service
- * i.e. for mysql `default[:rackspace_mysql][:data_dir] = "/var/lib/mysql"` 
+ * i.e. for mysql `default['rackspace_mysql']['data_dir'] = "/var/lib/mysql"` 
 
 ## Recipes
-* monitors.rb - Standard rackspace cloud checks for this cookbook. These should not automatically be included by the cookbook and should only be available to be included. 
- * This should populate the config hash `node[cloud_monitoring][monitors]` 
+* monitors.rb - Standard rackspace cloud checks for this cookbook. These should not automaticlaly by included by the cookbook and should only be available to be included. 
+ * This should populate the config hash `node['cloud_monitoring']['monitors']` 
 
 ##Templates
 * Template provider calls should always include the `cookbook` attribute as to allow for easily overriding from a wrapper cookbooks. The default should always be the cookbook itself.
@@ -37,7 +37,7 @@ CONTRIBUTING
 
 ```ruby   
 template "/etc/sudoers" do
-  cookbook node[:rackspace_sudo][:templates_cookbook][:sudoers]
+  cookbook node['rackspace_sudo']['templates_cookbook']['sudoers']
   source "sudoers.erb"
   mode 0440
   owner "root"
@@ -48,7 +48,7 @@ end
 * i.e. in attributes
 
 ```ruby
-   default[:rackspace_sudo][:templates_cookbook][:sudoers] = "rackspace_sudo"
+   default['rackspace_sudo']['templates_cookbook']['sudoers'] = "rackspace_sudo"
 ```
 
 ## metadata.rb
@@ -58,7 +58,7 @@ end
 
 #Misc
 ## GIT Tags
-* Version increases should have an accompanying git tag. Jenkins will be responsible for ensuring this is complete.
+* Version increases should have an accompying git tag. Jenkins will be responsbile for ensuring this is complete.
 
 ## Licensing
 * All Cookbooks must be Apache 2.0 licensed. 
@@ -68,7 +68,7 @@ end
 
 ## README.md / Documentation
 * Please include a README.md file in the cookbook root directory.
-* Please include Descriptions, Platform support, notes, notes on recipes, attributes, CONTRIBUTING and testing specifications.
+* Please include Descriptions, Platform support, notes, nots on recipes, attributes, CONTRIBUTING and testing specifications.
 * If the cookbook is a fork, please credit original cookbook authors.
 
 ## CHANGELOG.md
@@ -114,7 +114,7 @@ platforms:
 ```
 
 ### test-kitchen structure
-* Tests should be called and have any needed attributes set in a .kitchen.yml file with separate suites as appropriate. We will append our own .kitchen.local.yml via branch `testing` that provides kitchen-openstack support for our testing against openstack.
+* Tests should be called and have any needed attributes set in a .kitchen.yml file with seperate suites as appropiate. We will append our own .kitchen.local.yml via branch `testing` that provides kitchen-openstack support for our testing against openstack.
 
 ## Strainer
 * standard Gemfile is [here](https://github.com/rackspace-cookbooks/contributing/blob/master/Gemfile)
@@ -125,11 +125,10 @@ platforms:
 
 ## Rubocop
 * standard .rubocop.yml is [here](https://github.com/rackspace-cookbooks/contributing/blob/master/.rubocop.yml)
-* Disabling cops in code is allowed where the style recommendation results in code which is more difficult to read, is messier than the original, or is otherwise arguable as an anti-pattern.  Disabled cops must have comments documenting why they are disabled and disable target code blocks, not a whole file.  See [the Rubocop docs](https://github.com/bbatsov/rubocop#disabling-cops-within-source-code) for details on in-code disables.
 
 ### Chefspec
 * All Chefspec tests should be located in `spec` within the parent cookbook
-* All in memory testing. Isolated, independent, atomic.
+* All in memory testing. Isolated, indepented, atomic.
 * LWRPs and libraries need additional unit tests 
 
 ### Functional tests (test-kitchen)
