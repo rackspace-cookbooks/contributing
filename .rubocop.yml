@@ -6,7 +6,7 @@ Encoding:
 LineLength:
   Max: 180
 
-# Increase allowed lines in a method.  Shord methods are good, but 10 lines
+# Increase allowed lines in a method.  Short methods are good, but 10 lines
 #   is a bit too low.
 MethodLength:
   Max: 30
