@@ -19,3 +19,8 @@ RedundantReturn:
 #   and it will likely require building of over-length lines.
 IfUnlessModifier:
   Enabled: false
+
+# Don't complain about older hash rocket hash syntax. This was causing
+#   problems when configuring things like 'supports' for resources.
+HashSyntax:
+  EnforcedStyle: hash_rockets
