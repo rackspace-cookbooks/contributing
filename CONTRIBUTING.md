@@ -27,7 +27,7 @@ CONTRIBUTING
  * i.e. for mysql `default['rackspace_mysql']['data_dir'] = "/var/lib/mysql"` 
 
 ## Recipes
-* monitors.rb - Standard rackspace cloud checks for this cookbook. These should not automaticlaly by included by the cookbook and should only be available to be included. 
+* monitors.rb - Standard rackspace cloud checks for this cookbook. These should not automatically be included by the cookbook and should only be available to be included. 
  * This should populate the config hash `node['cloud_monitoring']['monitors']` 
 
 ##Templates
@@ -58,7 +58,7 @@ end
 
 #Misc
 ## GIT Tags
-* Version increases should have an accompying git tag. Jenkins will be responsbile for ensuring this is complete.
+* Version increases should have an accompanying git tag. Jenkins will be responsible for ensuring this is complete.
 
 ## Licensing
 * All Cookbooks must be Apache 2.0 licensed. 
@@ -68,7 +68,7 @@ end
 
 ## README.md / Documentation
 * Please include a README.md file in the cookbook root directory.
-* Please include Descriptions, Platform support, notes, nots on recipes, attributes, CONTRIBUTING and testing specifications.
+* Please include Descriptions, Platform support, notes, notes on recipes, attributes, CONTRIBUTING and testing specifications.
 * If the cookbook is a fork, please credit original cookbook authors.
 
 ## CHANGELOG.md
@@ -81,7 +81,7 @@ end
 * Workflow: `Jenkins -> Thor -> Strainer -> knife -> foodcritic -> chefspec -> kitchen -> Thor -> Jenkins`
 
 ## CI
-* CI will be performed via jenkins at jenkins.rackops.org on any pull requests.
+* CI will be performed via Jenkins at jenkins.rackops.org on any pull requests.
 
 ## test-kitchen support
 * test-kitchen 1.x support is required for all cookbooks. Please see [test-kitchen](https://github.com/opscode/test-kitchen) for more details.
@@ -114,7 +114,7 @@ platforms:
 ```
 
 ### test-kitchen structure
-* Tests should be called and have any needed attributes set in a .kitchen.yml file with seperate suites as appropiate. We will append our own .kitchen.local.yml via branch `testing` that provides kitchen-openstack support for our testing against openstack.
+* Tests should be called and have any needed attributes set in a .kitchen.yml file with separate suites as appropriate. We will append our own .kitchen.local.yml via branch `testing` that provides kitchen-openstack support for our testing against openstack.
 
 ## Strainer
 * standard Gemfile is [here](https://github.com/rackspace-cookbooks/contributing/blob/master/Gemfile)
@@ -125,10 +125,11 @@ platforms:
 
 ## Rubocop
 * standard .rubocop.yml is [here](https://github.com/rackspace-cookbooks/contributing/blob/master/.rubocop.yml)
+* Disabling cops in code is allowed where the style recommendation results in code which is more difficult to read, is messier than the original, or is otherwise arguable as an anti-pattern.  Disabled cops must have comments documenting why they are disabled and disable target code blocks, not a whole file.  See [the Rubocop docs](https://github.com/bbatsov/rubocop#disabling-cops-within-source-code) for details on in-code disables.
 
 ### Chefspec
 * All Chefspec tests should be located in `spec` within the parent cookbook
-* All in memory testing. Isolated, indepented, atomic.
+* All in memory testing. Isolated, independent, atomic.
 * LWRPs and libraries need additional unit tests 
 
 ### Functional tests (test-kitchen)
