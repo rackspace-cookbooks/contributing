@@ -27,7 +27,7 @@ CONTRIBUTING
  * i.e. for mysql `default[:rackspace_mysql][:data_dir] = "/var/lib/mysql"` 
 
 ## Recipes
-* monitors.rb - Standard rackspace cloud checks for this cookbook. These should not automaticlaly by included by the cookbook and should only be available to be included. 
+* monitors.rb - Standard rackspace cloud checks for this cookbook. These should not automatically be included by the cookbook and should only be available to be included. 
  * This should populate the config hash `node[cloud_monitoring][monitors]` 
 
 ##Templates
@@ -58,7 +58,7 @@ end
 
 #Misc
 ## GIT Tags
-* Version increases should have an accompying git tag. Jenkins will be responsbile for ensuring this is complete.
+* Version increases should have an accompanying git tag. Jenkins will be responsible for ensuring this is complete.
 
 ## Licensing
 * All Cookbooks must be Apache 2.0 licensed. 
@@ -68,7 +68,7 @@ end
 
 ## README.md / Documentation
 * Please include a README.md file in the cookbook root directory.
-* Please include Descriptions, Platform support, notes, nots on recipes, attributes, CONTRIBUTING and testing specifications.
+* Please include Descriptions, Platform support, notes, notes on recipes, attributes, CONTRIBUTING and testing specifications.
 * If the cookbook is a fork, please credit original cookbook authors.
 
 ## CHANGELOG.md
@@ -114,7 +114,7 @@ platforms:
 ```
 
 ### test-kitchen structure
-* Tests should be called and have any needed attributes set in a .kitchen.yml file with seperate suites as appropiate. We will append our own .kitchen.local.yml via branch `testing` that provides kitchen-openstack support for our testing against openstack.
+* Tests should be called and have any needed attributes set in a .kitchen.yml file with separate suites as appropriate. We will append our own .kitchen.local.yml via branch `testing` that provides kitchen-openstack support for our testing against openstack.
 
 ## Strainer
 * standard Gemfile is [here](https://github.com/rackspace-cookbooks/contributing/blob/master/Gemfile)
@@ -129,7 +129,7 @@ platforms:
 
 ### Chefspec
 * All Chefspec tests should be located in `spec` within the parent cookbook
-* All in memory testing. Isolated, indepented, atomic.
+* All in memory testing. Isolated, independent, atomic.
 * LWRPs and libraries need additional unit tests 
 
 ### Functional tests (test-kitchen)
