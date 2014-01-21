@@ -16,19 +16,17 @@ CONTRIBUTING
 
 #Chef
 ## Attributes
-* All attributes should by ruby symbols instead of strings
- * i.e. `default[:rackspace_apache]` instead of `default['apache']`
 * All Attributes namespace should match the cookbook name
- * i.e. `default[:rackspace_user]`
-* All Attributes that will be written a configuration file must fall under a [:config] hash
- * i.e. `default[:rackspace_apache][:config]`
+ * i.e. `default['rackspace_user']`
+* All Attributes that will be written a configuration file must fall under a ['config'] hash
+ * i.e. `default['rackspace_apache']['config']`
 * Attributes should default to the same ones as installed by the package or sane modifications.
 * "data dirs" should be configurable for any service
- * i.e. for mysql `default[:rackspace_mysql][:data_dir] = "/var/lib/mysql"` 
+ * i.e. for mysql `default['rackspace_mysql']['data_dir'] = "/var/lib/mysql"` 
 
 ## Recipes
 * monitors.rb - Standard rackspace cloud checks for this cookbook. These should not automaticlaly by included by the cookbook and should only be available to be included. 
- * This should populate the config hash `node[cloud_monitoring][monitors]` 
+ * This should populate the config hash `node['cloud_monitoring']['monitors']` 
 
 ##Templates
 * Template provider calls should always include the `cookbook` attribute as to allow for easily overriding from a wrapper cookbooks. The default should always be the cookbook itself.
@@ -37,7 +35,7 @@ CONTRIBUTING
 
 ```ruby   
 template "/etc/sudoers" do
-  cookbook node[:rackspace_sudo][:templates_cookbook][:sudoers]
+  cookbook node['rackspace_sudo']['templates_cookbook']['sudoers']
   source "sudoers.erb"
   mode 0440
   owner "root"
@@ -48,7 +46,7 @@ end
 * i.e. in attributes
 
 ```ruby
-   default[:rackspace_sudo][:templates_cookbook][:sudoers] = "rackspace_sudo"
+   default['rackspace_sudo']['templates_cookbook']['sudoers'] = "rackspace_sudo"
 ```
 
 ## metadata.rb
