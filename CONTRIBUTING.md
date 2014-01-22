@@ -5,7 +5,6 @@ CONTRIBUTING
 * The following document will serve as a guide on what and how to contribute to any cookbook within [rackspace-cookbooks](http://github.com/rackspace-cookbooks/).
 * The cookbook name, attribute namespace and git repo should all be the same
  * i.e. `rackspace_yum`, `rackspace_apache`
-* Attempt to follow the style guide from [github](https://github.com/styleguide/ruby)
 * The following items will not be supported in the rackspace-cookbooks
  * Compiling from Source in recipes
  * Operating systems outside `ubuntu`,`debian`,`rhel`,`centos`
@@ -114,7 +113,7 @@ platforms:
 ```
 
 ### test-kitchen structure
-* Tests should be called and have any needed attributes set in a .kitchen.yml file with separate suites as appropriate. We will append our own .kitchen.local.yml via branch `testing` that provides kitchen-openstack support for our testing against openstack.
+* Tests should be called and have any needed attributes set in a .kitchen.yml file with separate suites as appropriate. We will append our own .kitchen.local.yml during the jenkins run.
 
 ## Strainer
 * standard Gemfile is [here](https://github.com/rackspace-cookbooks/contributing/blob/master/Gemfile)
