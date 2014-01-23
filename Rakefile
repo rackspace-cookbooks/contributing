@@ -1,6 +1,4 @@
 #
-# Cookbook Name:: rackspace_cloudmonitoring
-#
 # Copyright 2014, Rackspace, US, Inc.
 # Copyright 2013-2014 Chef Software, Inc.
 # Copyright 2011 Fletcher Nichol
