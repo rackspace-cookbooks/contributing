@@ -99,7 +99,7 @@ platforms:
     box: opscode-ubuntu-12.04
     box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-12.04_chef-provisionerless.box
   run_list:
-  - recipe[apt]
+  - recipe[rackspace_apt]
 - name: centos-6.4
   driver_config:
     box: opscode-centos-6.4
@@ -109,7 +109,7 @@ platforms:
     box: opscode-debian-7.2.0
     box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_debian-7.2.0_chef-provisionerless.box
   run_list:
-  - recipe[apt]
+  - recipe[rackspace_apt]
 ```
 
 ### test-kitchen structure
