@@ -30,9 +30,117 @@ CONTRIBUTING
  * This should populate the config hash `node['cloud_monitoring']['monitors']` 
 
 ##Templates
-* Template provider calls should always include the `cookbook` attribute as to allow for easily overriding from a wrapper cookbooks. The default should always be the cookbook itself.
- * i.e. in recipe
 
+### Headers
+Templates must contain a banner stating they are Chef managed and the name of the controlling cookbook.
+
+### Config Hashes
+Templates should use configuration hashes as much as possible to allow adding of options to the config without needing to commit changes to the core cookbook.
+The config hash must:
+* Use the node[cookbook]['config'] namespace
+* Use an inner hash (node[cookbook]['config'][key]['value'] = value) instead of direct key:value pairs.
+
+An example of a mongodb.conf template exclusively following this style would be:
+
+```ruby
+#
+# CHEF MANAGED FILE: DO NOT EDIT
+# Controlling Cookbook: rackspace_contributing_example
+#
+
+<%
+# Generated using a config hash methodology
+# Each setting is a key in the node['rackspace_contributing_example']['config']['mongodb.conf'] hash
+#
+# The key of the config hash is the option name.
+#   The supported keys of the value are
+#      'comment': An optional comment
+#      'value': The value for the option
+
+node['rackspace_contributing_example']['config']['mongodb.conf'].each do |key, value|
+  if value.key?('comment')
+-%>
+# <%= key -%>: <%= value['comment'] %>
+<% end -%>
+<%= key -%> = <%= value['value'] %>
+<% end -%>  
+```
+
+And the corresponding attributes/default.rb:
+
+```ruby
+# Attributes used in the mongodb.conf file
+default['rackspace_contributing_example']['config']['mongodb.conf']['dbpath']['value']       = '/var/lib/mongodb'
+default['rackspace_contributing_example']['config']['mongodb.conf']['logpath']['value']      = '/var/log/mongodb/mongodb.log'
+default['rackspace_contributing_example']['config']['mongodb.conf']['logappend']['comment']  = 'Append to the logs by default.'
+default['rackspace_contributing_example']['config']['mongodb.conf']['logappend']['value']    = true
+default['rackspace_contributing_example']['config']['mongodb.conf']['auth']['value']         = true
+default['rackspace_contributing_example']['config']['mongodb.conf']['keyFile']['value']      = '/var/lib/mongodb/mongodb.key'
+```
+
+As opposed to a basic key:value hash the inner hash is used to allow hooks for more complicated cookbooks.
+This allows the adding of comments, weights, disable flags, etcetera.
+Supporting the 'value' and 'comment' inner hash keys is strongly recommended.
+Use of any other keys is left to the discretion of the author.
+
+The following is a more complicated template that mixes explicit and hash options:
+
+```ruby
+#  
+# CHEF MANAGED FILE: DO NOT EDIT
+# Controlling Cookbook: rackspace_contributing_example
+#
+
+<%
+# Generated using a config hash methodology
+# Each setting is a key in the node['rackspace_contributing_example']['config']['thing.conf'] hash
+#
+# The key of the config hash is the option name.
+#   The supported keys of the value are
+#      'comment': An optional comment
+#      'value': The value for the option
+
+# Duplicate the hash so we can remove keys we explicitly call
+# This is required to prevent modifying the main node data
+my_conf = node['rackspace_contributing_example']['config']['thing.conf'].dup
+-%>
+
+# Explicitly use an option
+SpecialArg1: <%= my_conf['SpecialArg1']['value'] -%>
+<% my_conf.delete('SpecialArg1') # Delete the key from the hash -%>
+
+# Explicitly use another option
+SpecialArg2: <%= my_conf['SpecialArg2']['value'] -%>
+<% my_conf.delete('SpecialArg2') # Delete the key from the hash -%>
+
+# Explicitly use  a third option
+SpecialArg3: <%= my_conf['SpecialArg3']['value'] -%>
+<% my_conf.delete('SpecialArg3') # Delete the key from the hash -%>
+
+#
+# Dynamically added values
+#
+
+<%
+# As we've deleted the used keys, we can now roll over the remaining keys as before:
+my_conf.each do |key, value|
+  if value.key?('comment')
+-%>
+# <%= key -%>: <%= value['comment'] %>
+<% end -%>
+<%= key -%> = <%= value['value'] %>
+<% end -%>
+```
+
+That is a simplified example, ideally the explicitly used keys would still read comments and handle other options implemented.
+It is also possible, for templates where the author objects to dynamic options, to use the method above but comment out the option with a big warning, or even call fail to abort the run.
+
+See [rackspace-cookbooks/rackspace_sysctl](https://github.com/rackspace-cookbooks/rackspace_sysctl) for a direct example usage or [rackspace-cookbooks/rackspace_iptables](https://github.com/rackspace-cookbooks/rackspace_iptables) for a more abstracted use.
+
+### Template Provider Calls
+Template provider calls should always include the `cookbook` attribute as to allow for easily overriding from a wrapper cookbooks. The default should always be the cookbook itself.
+
+i.e. in a recipe:
 
 ```ruby   
 template "/etc/sudoers" do
@@ -44,7 +152,7 @@ template "/etc/sudoers" do
 end
 ```
 
-* i.e. in attributes
+i.e in attributes:
 
 ```ruby
    default['rackspace_sudo']['templates_cookbook']['sudoers'] = "rackspace_sudo"
