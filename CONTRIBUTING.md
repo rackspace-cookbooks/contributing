@@ -17,7 +17,7 @@ CONTRIBUTING
 #Chef
 ## Attributes
 * All Attribute hashes should be indexed with strings instead of symbols or using 'dot notation'
- * i.e. `node['rackspace_apt']['config']`, not `node['rackspace_apt']['config']` and not `node.rackspace_apt.config`
+ * i.e. `node['rackspace_apt']['config']`, not `node[:rackspace_apt][:config]` and not `node.rackspace_apt.config`
 * All Attributes namespace should match the cookbook name
  * i.e. `default['rackspace_user']`
 * All Attributes that will be written a configuration file must fall under a ['config'] hash
