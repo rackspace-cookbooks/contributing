@@ -11,7 +11,7 @@ CONTRIBUTING
 * We will default to Rackspace provided systems
  * i.e. for ntp, we will default to rackspace ntp servers and fall back to community ones  
 * Berkshelf should update to point to github locations for any cookbook dependency
- * i.e `cookbook "apt", github: "rackspace_cookbooks/apt"`
+ * i.e `cookbook "rackspace_apt", github: "rackspace_cookbooks/rackspace_apt"`
 
 #Chef
 ## Attributes
