@@ -11,12 +11,12 @@ CONTRIBUTING
 * We will default to Rackspace provided systems
  * i.e. for ntp, we will default to rackspace ntp servers and fall back to community ones  
 * Berkshelf should update to point to github locations for any cookbook dependency
- * i.e `cookbook "apt", github: "rackspace-cookbooks/apt"`
+ * i.e `cookbook "apt", github: "rackspace_cookbooks/apt"`
 
 #Chef
 ## Attributes
 * All Attribute hashes should be indexed with strings instead of symbols or using 'dot notation'
- * i.e. `node['rackspace_apt']['config']`, not `node[:rackspace_apt][:config]` and not `node.rackspace_apt.config`
+ * i.e. `node['rackspace_apt']['config']`, not `node['rackspace_apt']['config']` and not `node.rackspace_apt.config`
 * All Attributes namespace should match the cookbook name
  * i.e. `default['rackspace_user']`
 * All Attributes that will be written a configuration file must fall under a ['config'] hash
@@ -27,7 +27,7 @@ CONTRIBUTING
 
 ## Recipes
 * monitors.rb - Standard rackspace cloud checks for this cookbook. These should not automatically be included by the cookbook and should only be available to be included. 
- * This should populate the config hash `node['cloud_monitoring']['monitors']` 
+ * This should populate the config hash `node['rackspace_cloudmonitoring']['monitors']` 
 
 ##Templates
 
@@ -37,8 +37,8 @@ Templates must contain a banner stating they are Chef managed and the name of th
 ### Config Hashes
 Templates should use configuration hashes as much as possible to allow adding of options to the config without needing to commit changes to the core cookbook.
 The config hash must:
-* Use the node[cookbook]['config'] namespace
-* Use an inner hash (node[cookbook]['config'][key]['value'] = value) instead of direct key:value pairs.
+* Use the `node['cookbook']['config']` namespace
+* Use an inner hash (`node[cookbook]['config']['key'] = value`) instead of direct key:value pairs.
 
 An example of a mongodb.conf template exclusively following this style would be:
 
@@ -160,7 +160,7 @@ i.e in attributes:
 
 ## metadata.rb
 * All dependencies should be listed with the pessimistic operation ("~> ") to the minor version
- * i.e. depends "apt", "~> 1.2" 
+ * i.e. depends "rackspace_apt", "~> 1.2" 
  
 
 #Misc
@@ -185,7 +185,7 @@ i.e in attributes:
 
 # Testing specifications
 * Added features should include additional tests. Pull requests without tests may be denied.
-* Workflow: `Jenkins -> Thor -> Strainer -> knife -> foodcritic -> chefspec -> kitchen -> Thor -> Jenkins`
+* Workflow: `Jenkins -> rake -> knife -> foodcritic -> chefspec -> kitchen -> Jenkins -> Thor (git tag)`
 
 ## CI
 * CI will be performed via Jenkins at jenkins.rackops.org on any pull requests.
@@ -223,9 +223,11 @@ platforms:
 ### test-kitchen structure
 * Tests should be called and have any needed attributes set in a .kitchen.yml file with separate suites as appropriate. We will append our own .kitchen.local.yml during the jenkins run.
 
-## Strainer
+## Gemfile
 * standard Gemfile is [here](https://github.com/rackspace-cookbooks/contributing/blob/master/Gemfile)
-* standard Strainerfile is [here](https://github.com/rackspace-cookbooks/contributing/blob/master/Strainerfile)
+
+## Rakefile
+* standard Rakefile is [here](https://github.com/rackspace-cookbooks/contributing/blob/master/Rakefile)
 
 ## Thor
 * Standard Thorfile is [here](https://github.com/rackspace-cookbooks/contributing/blob/master/Thorfile)
