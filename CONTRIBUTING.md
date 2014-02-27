@@ -1,6 +1,7 @@
 CONTRIBUTING
 ===========
 
+
 # General
 * The following document will serve as a guide on what and how to contribute to any cookbook within [rackspace-cookbooks](http://github.com/rackspace-cookbooks/).
 * The cookbook name, attribute namespace and git repo should all be the same
@@ -161,6 +162,10 @@ i.e in attributes:
 ## metadata.rb
 * All dependencies should be listed with the pessimistic operation ("~> ") to the minor version
  * i.e. depends "rackspace_apt", "~> 1.2" 
+* Version changes are defined as follows for `version 'x.y.z'`:
+ * `x:` Major changes that break functionality and may not be backwards compatible with previous versions.
+ * `y:` Functionality addons and non-breaking changes
+ * `z:` Commits, patches, bugfixes, etc.
  
 
 #Misc
