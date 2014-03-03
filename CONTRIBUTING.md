@@ -39,7 +39,7 @@ Templates must contain a banner stating they are Chef managed and the name of th
 Templates should use configuration hashes as much as possible to allow adding of options to the config without needing to commit changes to the core cookbook.
 The config hash must:
 * Use the `node['cookbook']['config']` namespace
-* Use an inner hash (`node[cookbook]['config']['key'] = value`) instead of direct key:value pairs.
+* Use an inner hash `node[cookbook]['config'][key]['value'] = value` instead of direct key:value pairs.
 
 An example of a mongodb.conf template exclusively following this style would be:
 
