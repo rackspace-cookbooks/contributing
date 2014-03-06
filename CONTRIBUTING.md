@@ -103,7 +103,24 @@ The following is a more complicated template that mixes explicit and hash option
 
 # Duplicate the hash so we can remove keys we explicitly call
 # This is required to prevent modifying the main node data
-my_conf = node['rackspace_contributing_example']['config']['thing.conf'].dup
+# Unfortunately .dup and .clone don't work; .dup is a shallow copy and .clone trips the read-only protection
+#  on the node class.  The node class has a to_hash method, but it is also a shallow copy.
+# Manually copy the hashes we need via a simple recursive copier
+# Be advised this example will mung up arrays.
+def deep_copy_node(node_data)
+  begin
+    ret_val = {}
+    node_data.each do |key, value|
+      # Recurse to deep copy any iterables referenced
+      ret_val[key] = deep_copy_node(value)
+    end
+    return ret_val
+  rescue NoMethodError
+    # This is thrown when the object doesn't support .each
+    return node_data
+  end
+end
+my_config_hash = deep_copy_node(node['rackspace_mysql']['config'])
 -%>
 
 # Explicitly use an option
@@ -135,6 +152,7 @@ my_conf.each do |key, value|
 
 That is a simplified example, ideally the explicitly used keys would still read comments and handle other options implemented.
 It is also possible, for templates where the author objects to dynamic options, to use the method above but comment out the option with a big warning, or even call fail to abort the run.
+See [rackspace_mysql my.cnf.erb](https://github.com/rackspace-cookbooks/rackspace_mysql/blob/master/templates/default/my.cnf.erb) for a complete example including helper methods wich parse and handle the inner hash.
 
 See [rackspace-cookbooks/rackspace_sysctl](https://github.com/rackspace-cookbooks/rackspace_sysctl) for a direct example usage or [rackspace-cookbooks/rackspace_iptables](https://github.com/rackspace-cookbooks/rackspace_iptables) for a more abstracted use.
 
