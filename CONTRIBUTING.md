@@ -33,7 +33,22 @@ CONTRIBUTING
 ##Templates
 
 ### Headers
-Templates must contain a banner stating they are Chef managed and the name of the controlling cookbook.
+Templates must contain a banner stating they are Chef managed and the name of the controlling cookbook. Here is the preferred banner:
+```ruby
+#
+# CHEF MANAGED FILE: DO NOT EDIT
+# Controlling Cookbook: <%  @cookbook_name %>
+#
+```
+And you need to pass the `cookbook_name` variable in your template delaration:
+```ruby
+template '/etc/ssh/sshd_config' do
+  cookbook node['rackspace_contrib_example']['templates_cookbook']['config']
+  source 'config.erb'
+  variables (cookbook_name: cookbook_name)
+end
+```
+
 
 ### Config Hashes
 Templates should use configuration hashes as much as possible to allow adding of options to the config without needing to commit changes to the core cookbook.
