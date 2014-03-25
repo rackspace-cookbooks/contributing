@@ -37,7 +37,7 @@ Templates must contain a banner stating they are Chef managed and the name of th
 ```ruby
 #
 # CHEF MANAGED FILE: DO NOT EDIT
-# Controlling Cookbook: <%  @cookbook_name %>
+# Controlling Cookbook: <%=  @cookbook_name %>
 #
 ```
 And you need to pass the `cookbook_name` variable in your template delaration:
