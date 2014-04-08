@@ -17,7 +17,7 @@ platforms:
     image_id: '80fbcb55-b206-41f9-9bc2-2dd7aac6c061'
   run_list:
   - recipe[rackspace_apt]
-- name: debian-7.2
+- name: debian-7.2.0
   driver_config:
     image_id: '857d7d36-34f3-409f-8435-693e8797be8b'
   run_list:
