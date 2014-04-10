@@ -23,3 +23,7 @@ IfUnlessModifier:
 # Raise allowed CyclomaticComplexity to 10.
 CyclomaticComplexity:
   Max: 10
+  
+# Disable Single Space before first arg
+SingleSpaceBeforeFirstArg:
+  Enabled: false
