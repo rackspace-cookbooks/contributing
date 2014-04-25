@@ -29,20 +29,20 @@ namespace :style do
 
   require 'foodcritic'
   desc 'Run Chef style checks'
-  FoodCritic::Rake::LintTask.new(:chef) { |task| 
+  FoodCritic::Rake::LintTask.new(:chef) do |task|
     task.options = { fail_tags: ['any'] }
-  }
+  end
 end
 
 desc 'Run all style checks'
-task style: ['style:chef', 'style:ruby']
+task style: %w(style:chef style:ruby)
 
 require 'rspec/core/rake_task'
 desc 'Run RSpec and ChefSpec unit tests'
 RSpec::Core::RakeTask.new(:unit)
 
 desc 'Run style and unit tests'
-task style_unit: ['style:chef', 'style:ruby', 'unit']
+task style_unit: %w(style:chef style:ruby unit)
 
 require 'kitchen'
 desc 'Run Test Kitchen integration tests'
@@ -56,8 +56,8 @@ end
 # We cannot run Test Kitchen on Travis CI yet...
 namespace :travis do
   desc 'Run tests on Travis'
-  task ci: ['style']
+  task ci: %w(style)
 end
 
 # The default rake task should just run it all
-task default: ['style', 'unit', 'integration']
+task default: %w(style unit integration)
