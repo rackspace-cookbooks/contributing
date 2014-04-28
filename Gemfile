@@ -18,4 +18,5 @@ group :integration do
   gem 'kitchen-vagrant', '~> 0.14'
   gem 'kitchen-rackspace', '>= 0.4.0'
   gem 'serverspec', '~> 0.15.1'
+  gem 'vagrant-wrapper', '~> 1.2'
 end
