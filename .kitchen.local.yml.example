@@ -1,6 +1,0 @@
-driver:
-  name: rackspace
-  rackspace_username: [RACKSPACE CLOUD USERNAME]
-  rackspace_api_key: [RACKSPACE CLOUD API KEY]
-  require_chef_omnibus: latest
-  no_ssh_tcp_check: true
